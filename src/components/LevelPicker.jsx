@@ -33,17 +33,20 @@ function RadioCard(props) {
     )
 }
 
-export default function LevelPicker() {
-    const options = ['Easy', 'Medium', 'Hard']
-
-    const { getRootProps, getRadioProps } = useRadioGroup({
+export default function LevelPicker({ setLevel }) {
+    const options = ['A', 'B', 'C']
+    const handleChange = (value) => {
+        setLevel(value);
+    }
+    const { value, getRootProps, getRadioProps } = useRadioGroup({
         name: 'framework',
-        defaultValue: 'react',
-        onChange: console.log,
+        defaultValue: 'Easy',
+        onChange: handleChange,
     })
 
+    // setLevel(value)
     const group = getRootProps()
-
+    // const v = getRadioProps() 
     return (
         <Stack>
             <Heading as='h4' size='md'>

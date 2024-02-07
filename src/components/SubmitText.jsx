@@ -2,12 +2,13 @@ import { Box, Button, Heading, Text, Textarea } from '@chakra-ui/react'
 import { useState } from 'react'
 
 
-export default function SubmitText() {
+export default function SubmitText({setArticle, onSubmit}) {
     let [value, setValue] = useState('')
 
     let handleInputChange = (e) => {
         let inputValue = e.target.value
         setValue(inputValue)
+        setArticle(inputValue)
     }
 
     return (
@@ -24,7 +25,7 @@ export default function SubmitText() {
                 placeholder='Here is a sample placeholder'
                 size='sm'
             />
-            <Button width="75px" colorScheme='teal' size='md' ml="auto">Submit</Button>
+            <Button width="75px" onClick={onSubmit} colorScheme='teal' size='md' ml="auto">Submit</Button>
         </Box>
     )
 }

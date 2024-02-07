@@ -3,7 +3,7 @@ import './FlippableCard.css';
 import Card from '../Card/Card';
 import { CSSTransition } from 'react-transition-group';
 
-const FlippableCard = ({ api }) => {
+const FlippableCard = () => {
   const [showFront, setShowFront] = useState(true);
   return (
     <div id="container-FlippableCard">

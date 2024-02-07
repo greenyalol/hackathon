@@ -4,11 +4,11 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import './Score.css';
 
-const Score = ({ points }) => {
+const Score = ({ points,resetGame }) => {
   let message;
-  if ( points  < 4) {
+  if (points < 4) {
     message = 'Try again';
-  } else if ( points  >= 5 &&  points  <= 7) {
+  } else if (points >= 5 && points <= 7) {
     message = 'Good';
   } else {
     message = 'Excellent';
@@ -27,7 +27,9 @@ const Score = ({ points }) => {
           <p>{message}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary">Retry?</Button>
+          <Button variant="secondary" onClick={resetGame}>
+            Retry?
+          </Button>
           <Button variant="primary">Next</Button>
         </Modal.Footer>
       </Modal.Dialog>

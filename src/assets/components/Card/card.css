@@ -41,10 +41,12 @@
   gap: 100px;
   position: relative;
   z-index: 10;
+  backface-visibility: hidden;
 }
 
 #btn {
   margin-top: 36px;
+  
 }
 
 #correct-answer-container {

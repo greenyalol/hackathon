@@ -12,19 +12,19 @@ const Card = ({ handleClick, api }) => {
   const[points,setPoints]=useState(0)
   const questions = [
     {
-      word: 'Question 1',
-      options: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
-      correct: 'Answer 1',
+      word: 'what is a dog ?',
+      options: ['an animal', 'a vehicule', 'a plant', 'an aliment'],
+      correct: 'an animal',
     },
     {
-      word: 'Question 2',
-      options: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
-      correct: 'Answer 2',
+      word: 'what is a car ?',
+      options: ['an animal', 'a vehicule', 'a plant', 'an aliment'],
+      correct: 'a vehicule',
     },
     {
-      word: 'Question 3',
-      options: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
-      correct: 'Answer 3',
+      word: 'what is counterStrike',
+      options: ['an animal', 'a vehicule', 'a game', 'an aliment'],
+      correct: 'a game',
     },
     // Add more questions here
   ];
@@ -39,7 +39,7 @@ const Card = ({ handleClick, api }) => {
     }
   };
   const handleNextQuestion = () => {
-    setShow(true);
+   // setShow(true);
     setCorrect(false);
     if (currentQuestionIndex + 1 < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -47,11 +47,18 @@ const Card = ({ handleClick, api }) => {
       setFinished(true);
     }
   };
-
+  
+  const resetGame = () => {
+    setShow(true);
+    setCorrect(false);
+    setFinished(false);
+    setCurrentQuestionIndex(0);
+    setPoints(0);
+  };
   return (
     <>
       {finished ? (
-        <Score points={points} />
+        <Score points={points} resetGame={resetGame} />
       ) : (
         <div
           id={correct ? 'correct-answer-container' : 'container'}

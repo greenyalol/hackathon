@@ -3,10 +3,12 @@ import './card.css';
 import '../transition.css';
 import Button from 'react-bootstrap/Button';
 import Score from '../Score/Score';
+import star from"../../../image/star.png"
+import sad from"../../../image/sad.png"
 
 const Card = ({ handleClick, showFront, setShowFront }) => {
   const [show, setShow] = useState(true);
-  const [showoptions, setShowoptions] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [finished, setFinished] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -52,6 +54,7 @@ const Card = ({ handleClick, showFront, setShowFront }) => {
     },
   ];
   const handleButtonClick = (selectedAnswer) => {
+    setShowAnswer(true);
     const currentQuestion = questions[currentQuestionIndex];
     if (selectedAnswer === questions[currentQuestionIndex].word) {
       setPoints(points + 1);
@@ -64,6 +67,7 @@ const Card = ({ handleClick, showFront, setShowFront }) => {
     }
   };
   const handleNextQuestion = () => {
+    setShowAnswer(false);
     setShow(true);
     setCorrect(false);
     if (currentQuestionIndex + 1 < questions.length) {
@@ -94,9 +98,20 @@ const Card = ({ handleClick, showFront, setShowFront }) => {
           }}
         >
           <div id="back">
-            The Rigth answer is : {questions[currentQuestionIndex].word}
-            {correct ? <p>Well Done</p> : <p>Don't Worry Next Time</p>}
-            <Button onClick={handleNextQuestion}>Next Question</Button>
+            {showAnswer && (
+              <p>
+                {' '}
+                The Rigth answer is : {questions[currentQuestionIndex].word}
+              </p>
+            )}
+            {correct
+              ? showAnswer && <p>Well Done <img style={{ width: '50px', height: '50px' }} src={star}/></p>
+              : showAnswer && <p>Don't Worry Next Time <img style={{ width: '50px', height: '50px' }} src={sad}/></p>}
+            {showAnswer && (
+              <Button onClick={handleNextQuestion} variant="outline-light">
+                Next Question
+              </Button>
+            )}
           </div>
           <div id="front">{questions[currentQuestionIndex].correct}</div>
           {show && (
@@ -104,6 +119,8 @@ const Card = ({ handleClick, showFront, setShowFront }) => {
               <div>
                 <div>
                   <Button
+                  className="btn-default-size"
+                    variant="outline-light"
                     onClick={() => {
                       handleButtonClick(
                         questions[currentQuestionIndex].options[0]
@@ -113,8 +130,10 @@ const Card = ({ handleClick, showFront, setShowFront }) => {
                     {questions[currentQuestionIndex].options[0]}
                   </Button>
                 </div>
-                <div>
+                <div className="d-flex justify-content-center">
                   <Button
+                  className="btn-default-size"
+                    variant="outline-light"
                     id="btn"
                     onClick={() => {
                       handleButtonClick(
@@ -130,6 +149,8 @@ const Card = ({ handleClick, showFront, setShowFront }) => {
               <div>
                 <div>
                   <Button
+                  className="btn-default-size"
+                    variant="outline-light"
                     onClick={() => {
                       handleButtonClick(
                         questions[currentQuestionIndex].options[2]
@@ -140,8 +161,10 @@ const Card = ({ handleClick, showFront, setShowFront }) => {
                     {questions[currentQuestionIndex].options[2]}
                   </Button>
                 </div>
-                <div>
+                <div className="d-flex justify-content-center">
                   <Button
+                  className="btn-default-size"
+                    variant="outline-light"
                     id="btn"
                     onClick={() => {
                       handleButtonClick(

@@ -4,7 +4,7 @@
   border-radius: 5px;
   border: 5px solid white;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
-  background-color: rgb(176, 40, 19);
+  background-color: rgb(161, 35, 123);
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1000ms;
@@ -68,5 +68,12 @@
   transform-style: preserve-3d;
 
   transition: transform 1000ms;
+}
+
+.btn-default-size {
+  width: 150px; 
+  height: 40px; 
+  font-size: 1rem; 
+  padding: 0.5rem 1rem;
 }
 

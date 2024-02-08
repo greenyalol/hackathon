@@ -14,7 +14,8 @@ export default function Homepage() {
         console.log(postInfo);
         axios({
             method: 'post',
-            url: 'https://ec2-174-129-121-11.compute-1.amazonaws.com/',
+            url: 'http://54.236.18.163:8080/generate-quiz',
+            withCredentials: false,
             data: {
                 postInfo
             }

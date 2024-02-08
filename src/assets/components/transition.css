@@ -24,4 +24,5 @@
 
 .flip-enter-done {
     transform: rotateY(0deg);
+    height: 100%;
 }

@@ -1,5 +1,5 @@
 #container-FlippableCard{
-    height: 300px;
-    width: 600px;
+    height:100%;
+    width: 800px;
     perspective: 1000px;
 }

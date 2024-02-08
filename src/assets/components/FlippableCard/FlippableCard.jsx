@@ -9,9 +9,11 @@ const FlippableCard = () => {
     <div id="container-FlippableCard">
       <CSSTransition in={showFront} timeout={300} classNames="flip">
         <Card
-          handleClick={() => {
+        showFront={showFront}
+        setShowFront={setShowFront}
+          /*handleClick={() => {
             setShowFront((showFront) => !showFront);
-          }}
+          }}*/
         />
       </CSSTransition>
     </div>

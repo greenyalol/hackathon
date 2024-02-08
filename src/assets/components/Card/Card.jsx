@@ -4,50 +4,76 @@ import '../transition.css';
 import Button from 'react-bootstrap/Button';
 import Score from '../Score/Score';
 
-const Card = ({ handleClick, api }) => {
+const Card = ({ handleClick, showFront, setShowFront }) => {
   const [show, setShow] = useState(true);
+  const [showoptions, setShowoptions] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [finished, setFinished] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const[points,setPoints]=useState(0)
+  const [points, setPoints] = useState(0);
   const questions = [
     {
-      word: 'what is a dog ?',
-      options: ['an animal', 'a vehicule', 'a plant', 'an aliment'],
-      correct: 'an animal',
+      correct: 'belonging to or relating to Israel or its people: ',
+      options: ['israeli', 'palestinian', 'enclave', 'ceasefire'],
+      word: 'israeli',
     },
     {
-      word: 'what is a car ?',
-      options: ['an animal', 'a vehicule', 'a plant', 'an aliment'],
-      correct: 'a vehicule',
+      correct: 'belonging to or relating to Palestine: ',
+      options: ['palestinian', 'israeli', 'militant', 'counteroffer'],
+      word: 'palestinian',
     },
     {
-      word: 'what is counterStrike',
-      options: ['an animal', 'a vehicule', 'a game', 'an aliment'],
-      correct: 'a game',
+      correct: 'active, determined, and often willing to use force: ',
+      options: ['counteroffer', 'palestinian', 'enclave', 'militant'],
+      word: 'militant',
     },
-    // Add more questions here
+    {
+      correct:
+        'a short interruption in a war or argument, or an agreement to stop fighting or arguing for a period of time: ',
+      options: ['counteroffer', 'truce', 'enclave', 'militant'],
+      word: 'truce',
+    },
+    {
+      correct:
+        'a part of a country that is surrounded by another country, or a group of people who are different from the people living in the surrounding area: ',
+      options: ['enclave', 'ceasefire', 'militant', 'palestinian'],
+      word: 'enclave',
+    },
+    {
+      correct:
+        'an agreement, usually between two armies, to stop fighting in order to allow discussions about peace: ',
+      options: ['ceasefire', 'palestinian', 'israeli', 'militant'],
+      word: 'ceasefire',
+    },
+    {
+      correct: 'counter-bid : ',
+      options: ['militant', 'enclave', 'palestinian', 'counteroffer'],
+      word: 'counteroffer',
+    },
   ];
   const handleButtonClick = (selectedAnswer) => {
     const currentQuestion = questions[currentQuestionIndex];
-    if (selectedAnswer === questions[currentQuestionIndex].correct) {
-      setPoints(points+1)
+    if (selectedAnswer === questions[currentQuestionIndex].word) {
+      setPoints(points + 1);
       console.log('Correct answer!');
+      setShowFront(!showFront);
       setCorrect(true);
     } else {
       console.log('Wrong answer!');
+      setShowFront(!showFront);
     }
   };
   const handleNextQuestion = () => {
-   // setShow(true);
+    setShow(true);
     setCorrect(false);
     if (currentQuestionIndex + 1 < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setShowFront(!showFront);
     } else {
       setFinished(true);
     }
   };
-  
+
   const resetGame = () => {
     setShow(true);
     setCorrect(false);
@@ -68,11 +94,11 @@ const Card = ({ handleClick, api }) => {
           }}
         >
           <div id="back">
-            {questions[currentQuestionIndex].correct}
+            The Rigth answer is : {questions[currentQuestionIndex].word}
             {correct ? <p>Well Done</p> : <p>Don't Worry Next Time</p>}
             <Button onClick={handleNextQuestion}>Next Question</Button>
           </div>
-          <div id="front">{questions[currentQuestionIndex].word}</div>
+          <div id="front">{questions[currentQuestionIndex].correct}</div>
           {show && (
             <div id="container-proposition">
               <div>
@@ -132,7 +158,6 @@ const Card = ({ handleClick, api }) => {
           )}
         </div>
       )}
-    
     </>
   );
 };

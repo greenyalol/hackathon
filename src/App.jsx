@@ -6,10 +6,11 @@ import FlippableCard from './assets/components/FlippableCard/FlippableCard';
 import './App.css';
 import { Button } from 'react-bootstrap';
 
+
 function App() {
   return (
     <>
-      <FlippableCard />
+      <FlippableCard/>
     </>
   );
 }
